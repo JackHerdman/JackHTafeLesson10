@@ -62,4 +62,11 @@ module.exports = class TeacherService {
         let foundTeacher = this.teacherDataReader.getArrayFromFile().filter(s => id == s.id);
         return foundTeacher;
         }
+
+        getAverageGrades(id) {
+            let totalGrades = this.getTeacher(id).students.reduce(function (total, student) {
+                return total + student.getAverageGrades();
+            });
+            return totalGrades / this.getTeacher(id).students.length;
+        }
 }

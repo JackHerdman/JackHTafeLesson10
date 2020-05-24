@@ -62,10 +62,15 @@ async function Program() {
                         console.table(matchingStudents, ["firstName", "lastName", "age", "id"]);
                         break;
                     case "2":
-                        //check grades / NOT DONE
+                        //check grades / WORKING
+                        let gradesStudentId = await askQuestion("Enter the Students Id: ");
+                        let averageGrade =_studentService.getAverageGrades(gradesStudentId);
+                        console.table(_studentService.findStudent(gradesStudentId), ["firstName", "lastName", "age"]);
+                        console.log(`This students average grade is ${averageGrade}`)
+                        console.log("");
                         break;
                     case "3":
-                        //update a student / NOT WORKING
+                        //update a student / WORKING
                         let studentId = await askQuestion("Enter the Students Id: ");
                         console.table(_studentService.findStudent(studentId));
                         console.log("");
@@ -159,7 +164,14 @@ async function Program() {
                         console.table(matchingTeachers, ["firstName", "lastName", "age", "id"]);
                         break;
                     case "2":
-                        //check average teacher grades
+                        //check average teacher grades / NOT WORKING
+                        let gradesTeacherId = await askQuestion("Enter the Teachers Id: ");
+                        let TeacherAverageGrade =_teacherService.getAverageGrades(gradesTeacherId);
+                        console.table(_teacherService.findTeacher(gradesTeacherId), ["firstName", "lastName", "age"]);
+                        console.log(`This teachers average student grade is ${TeacherAverageGrade}`)
+                        console.log("");
+                        break;
+
                         break;
                     case "3":
                         //update a teacher / NOT WORKING

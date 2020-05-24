@@ -79,9 +79,21 @@ module.exports = class StudentService {
         }
         return true;
     }
-    findStudent(id){
+    findStudent(id) {
         let foundStudent = this.studentDataReader.getArrayFromFile().filter(s => id == s.id);
         return foundStudent;
+    }
+    getAverageGrades(id) {
+        let student = this.getStudent(id)
+        if (!student) {
+            console.log("Error: No Matching Student Found");
+            console.log("");
+        } else {
+            let totalGrades = student.grades.reduce(function (total, currentValue) {
+                return total + currentValue;
+            });
+            return totalGrades / student.grades.length;
         }
+    }
 
 }
