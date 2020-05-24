@@ -58,15 +58,16 @@ module.exports = class TeacherService {
         return true;
     }
 
-    findTeacher(id){
+    findTeacher(id) {
         let foundTeacher = this.teacherDataReader.getArrayFromFile().filter(s => id == s.id);
         return foundTeacher;
-        }
+    }
 
-        getAverageGrades(id) {
-            let totalGrades = this.getTeacher(id).students.reduce(function (total, student) {
-                return total + student.getAverageGrades();
-            });
-            return totalGrades / this.getTeacher(id).students.length;
-        }
+    getAverageGrades(id) {
+        let allStudents = this.studentDataReader.getArrayFromFile();
+        let totalGrades = this.getTeacher(id).getMyStudents(allStudents).reduce(function (total, student) {
+            return total + student.getAverageGrades();
+        });
+        return totalGrades / this.getTeacher(id).students.length;
+    }
 }

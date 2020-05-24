@@ -65,7 +65,7 @@ async function Program() {
                         //check grades / WORKING
                         let gradesStudentId = await askQuestion("Enter the Students Id: ");
                         let averageGrade =_studentService.getAverageGrades(gradesStudentId);
-                        console.table(_studentService.findStudent(gradesStudentId), ["firstName", "lastName", "age"]);
+                        console.table(_studentService.findStudent(gradesStudentId), ["firstName", "lastName", "age", "grades"]);
                         console.log(`This students average grade is ${averageGrade}`)
                         console.log("");
                         break;
